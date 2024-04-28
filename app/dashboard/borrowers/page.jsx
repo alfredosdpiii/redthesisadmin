@@ -71,9 +71,14 @@ const TransactionsPage = async ({ searchParams }) => {
               <td>{formatDate(transaction.date)}</td>
               <td>
                 <ul>
-                  {transaction.products.map((product, index) => {
-                    const productId = Object.keys(product)[0];
-                    return <li key={index}>{getProductDetails(productId)}</li>;
+                  {transaction.products.map((product) => {
+                    return Object.entries(product).map(
+                      ([productId, quantity]) => (
+                        <li key={productId}>
+                          {getProductDetails(productId)} - Quantity: {quantity}
+                        </li>
+                      ),
+                    );
                   })}
                 </ul>
               </td>
