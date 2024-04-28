@@ -6,13 +6,13 @@ import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import { fetchProducts } from "@/app/lib/data";
 import { deleteProduct } from "@/app/lib/actions";
 
-const Physics = async ({ searchParams }) => {
+const Chemistry = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const { count, products } = await fetchProducts(q, page);
 
-  const physicsProducts = products.filter((product) =>
-    product.cat.includes("Physics"),
+  const chemistryProducts = products.filter((product) =>
+    product.cat.includes("Chemistry"),
   );
 
   return (
@@ -35,7 +35,7 @@ const Physics = async ({ searchParams }) => {
           </tr>
         </thead>
         <tbody>
-          {physicsProducts.map((product) => (
+          {chemistryProducts.map((product) => (
             <tr key={product.id}>
               <td>
                 <div className={styles.product}>
@@ -77,4 +77,4 @@ const Physics = async ({ searchParams }) => {
   );
 };
 
-export default Physics;
+export default Chemistry;
