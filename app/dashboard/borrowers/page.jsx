@@ -1,5 +1,6 @@
 import {
   updateTransaction,
+  deleteTransaction,
   getTransactions,
   fetchSpecificProduct,
 } from "@/app/lib/actions";
@@ -83,6 +84,16 @@ const TransactionsPage = async ({ searchParams }) => {
                     <input type="hidden" name="id" value={transaction._id} />
                     <button className={`${styles.button} ${styles.approve}`}>
                       Approve
+                    </button>
+                  </form>
+                </div>
+              </td>
+              <td>
+                <div className={styles.buttons}>
+                  <form action={deleteTransaction}>
+                    <input type="hidden" name="id" value={transaction._id} />
+                    <button className={`${styles.button} ${styles.delete}`}>
+                      Delete
                     </button>
                   </form>
                 </div>

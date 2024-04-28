@@ -169,7 +169,7 @@ export const authenticate = async (prevState, formData) => {
 };
 
 export const getTransactions = async () => {
-  revalidatePath("/dashboard/transactions");
+  revalidatePath("/dashboard/borrowers");
   try {
     connectToDB();
     const transactions = await Transaction.find();
@@ -215,4 +215,18 @@ export const fetchSpecificProduct = async (id) => {
     console.log(err);
     throw new Error("Failed to fetch products!");
   }
+};
+
+export const deleteTransaction = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDB();
+    await Transaction.findByIdAndDelete(id);
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to delete transaction!");
+  }
+
+  revalidatePath("/dashboard/borrowers");
 };
